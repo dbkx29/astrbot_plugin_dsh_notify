@@ -1,6 +1,7 @@
 name: astrbot_plugin_dsh_notify
 display_name: DSH 任务通知
 desc: 接收 DeepSeek Harness 的对话轮次与后台任务事件，并主动推送到 QQ。
-version: v0.1.0
+version: v0.1.1
 author: dbkx29
 repo: https://github.com/dbkx29/astrbot_plugin_dsh_notify
+astrbot_version: ">=4.26.0"

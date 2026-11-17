@@ -94,7 +94,12 @@ class DshNotify(Star):
             "last_label": None,
         }
         self._lock = asyncio.Lock()
-        self.register_web_api(WEB_ROUTE, self._on_push, ["POST"], "接收 DSH 对话与后台任务通知")
+        # AstrBot 把插件 Web API 的注册方法放在 Context 上（Star 没有这个方法）。
+        # 路由需要以插件名为前缀，Dashboard 会挂到
+        # /api/v1/plugins/extensions/<plugin_name>/<route>。
+        self.context.register_web_api(
+            WEB_ROUTE, self._on_push, ["POST"], "接收 DSH 对话与后台任务通知"
+        )
         logger.info(f"[{PLUGIN_NAME}] web api registered at /api/v1/plugins/extensions/{WEB_ROUTE}")
 
     # ------------------------------------------------------------------ 配置
