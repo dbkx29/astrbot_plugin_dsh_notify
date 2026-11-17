@@ -1,0 +1,73 @@
+{
+  "enabled": {
+    "description": "启用通知投递",
+    "type": "bool",
+    "default": true,
+    "hint": "关掉后 Web API 仍会返回 success，但不会发消息。"
+  },
+  "extra_token": {
+    "description": "额外共享密钥（可选）",
+    "type": "string",
+    "default": "",
+    "hint": "填写后，DSH 侧必须带同样的 X-DSH-Token 请求头才会被接受；留空则只依赖 AstrBot 的 API Key 鉴权。"
+  },
+  "notify_turns": {
+    "description": "转发对话轮次结束",
+    "type": "bool",
+    "default": true,
+    "hint": "每轮对话结束时都推送（按 DSH 侧 turnReasons 过滤后）。"
+  },
+  "turn_text_chars": {
+    "description": "对话通知附带的回复摘录长度",
+    "type": "int",
+    "default": 600,
+    "hint": "取回复的最后 N 个字符，0 表示不附带。"
+  },
+  "kinds": {
+    "description": "只转发这些任务类型",
+    "type": "string",
+    "default": "subagent,bash",
+    "hint": "逗号分隔，例如 subagent,bash；留空表示全部类型。"
+  },
+  "min_duration_seconds": {
+    "description": "忽略短任务（秒）",
+    "type": "int",
+    "default": 0,
+    "hint": "运行时间短于该值的任务不转发，0 表示不限制。"
+  },
+  "max_tail_chars": {
+    "description": "输出尾部字符数",
+    "type": "int",
+    "default": 800,
+    "hint": "消息里附带的日志尾部长度，0 表示不附带。"
+  },
+  "quiet_hours": {
+    "description": "免打扰时段",
+    "type": "string",
+    "default": "",
+    "hint": "例如 23:30-08:00，支持跨午夜；留空表示全天可打扰。"
+  },
+  "quiet_keep_failed": {
+    "description": "免打扰时段仍推送失败任务",
+    "type": "bool",
+    "default": true
+  },
+  "tz_offset_hours": {
+    "description": "免打扰时区偏移",
+    "type": "int",
+    "default": 8,
+    "hint": "容器默认使用 UTC，这里按 UTC 偏移计算免打扰时段，8 表示北京时间。"
+  },
+  "at_qq": {
+    "description": "群消息中 @ 的 QQ",
+    "type": "string",
+    "default": "",
+    "hint": "留空则不 @；只对群聊目标生效。"
+  },
+  "dedupe_ttl_hours": {
+    "description": "去重缓存时长（小时）",
+    "type": "int",
+    "default": 24,
+    "hint": "DSH 重试或 AstrBot 重启后，同一任务不会重复推送。"
+  }
+}
